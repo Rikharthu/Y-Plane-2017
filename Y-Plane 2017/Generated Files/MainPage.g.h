@@ -11,7 +11,9 @@ namespace Windows {
     namespace UI {
         namespace Xaml {
             namespace Controls {
+                ref class SplitView;
                 ref class Button;
+                ref class ListView;
             }
         }
     }
@@ -43,7 +45,9 @@ namespace Y_Plane_2017
     private:
         bool _contentLoaded;
     
-        private: ::Windows::UI::Xaml::Controls::Button^ BtnShowDatabase;
+        private: ::Windows::UI::Xaml::Controls::SplitView^ ListDrawer;
+        private: ::Windows::UI::Xaml::Controls::Button^ HamburgerButton;
+        private: ::Windows::UI::Xaml::Controls::ListView^ PlanesListView;
         private: ::Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^ CanvasAnimated;
     };
 }

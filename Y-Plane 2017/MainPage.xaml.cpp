@@ -12,6 +12,9 @@
 #include "Bomber.h"
 #include <ctime>
 #include "Utils.h"
+#include <locale>
+#include <codecvt>
+#include <string>
 
 using namespace Y_Plane_2017;
 
@@ -109,8 +112,6 @@ void Y_Plane_2017::MainPage::CanvasAnimated_Draw(Microsoft::Graphics::Canvas::UI
 	simulation->move_all();
 	simulation->draw_all();
 
-	
-
 	junkers->move();
 	junkers->draw();
 
@@ -143,6 +144,7 @@ void Y_Plane_2017::MainPage::CanvasAnimated_CreateResources(Microsoft::Graphics:
 void Y_Plane_2017::MainPage::BtnShowDatabase_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	vector<Plane*> planes = *simulation->database->getData2();
+	PlanesListView->Items->Clear();
 	for (Plane *p : planes) {
 		char buffer[256];
 
@@ -166,11 +168,26 @@ void Y_Plane_2017::MainPage::BtnShowDatabase_Click(Platform::Object^ sender, Win
 		}
 
 		// ID
-
+		sprintf(buffer, "ID: %d\nCreated at\t%s\nDestroyed at\t%s", p->id, date1, date2);
 
 		// Assemble
-
-		int a = 4;
+		PlanesListView->Items->Append(toPlatformString(buffer));
 	}
-	int xyz = 44;
+	ListDrawer->IsPaneOpen = true;
+}
+
+Platform::String ^ Y_Plane_2017::MainPage::toPlatformString(std::string inputString)
+{
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+	std::wstring intermediateForm = converter.from_bytes(inputString);
+	Platform::String^ retVal = ref new Platform::String(intermediateForm.c_str());
+
+	return retVal;
+}
+
+
+void Y_Plane_2017::MainPage::HamburgerButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
+	ListDrawer->IsPaneOpen = !ListDrawer->IsPaneOpen;
 }

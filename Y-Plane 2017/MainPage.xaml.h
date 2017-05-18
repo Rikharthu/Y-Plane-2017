@@ -23,5 +23,7 @@ namespace Y_Plane_2017
 		void CanvasAnimated_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		void CanvasAnimated_CreateResources(Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^ sender, Microsoft::Graphics::Canvas::UI::CanvasCreateResourcesEventArgs^ args);
 		void BtnShowDatabase_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		Platform::String^ toPlatformString(std::string inputString);
+		void HamburgerButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
