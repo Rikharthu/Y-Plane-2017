@@ -12,6 +12,23 @@ using namespace Windows::UI;
 
 long Plane::next_id = 0;
 
+Plane::Plane()
+{
+	created_at = time(nullptr);
+	id = next_id++;
+
+	destroyed_at = -1;
+	radius = DEFAULT_PLANE_RADIUS;
+	direction = 0;
+	center_x = 0;
+	center_y = 0;
+	color = DEFAULT_PLANE_COLOR;
+	speed = DEFAULT_PLANE_SPEED;
+	diff = PI / 32;
+	out_of_bounds_counter = 0;
+	is_selected = false;
+}
+
 Plane::~Plane()
 {
 	// TODO set smth
@@ -27,7 +44,7 @@ void Plane::draw() {
 
 void Plane::move()
 {
-	direction = disperse(direction, PI/12);
+	direction = disperse(direction, diff);
 	Rect & f = simulation->field;
 	bool is_in = f.Contains(Point(center_x, center_y));
 	int tmp_x = center_x + speed*cos(direction);

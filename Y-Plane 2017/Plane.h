@@ -22,22 +22,10 @@ public:
 	float speed;
 	bool is_selected;
 	int out_of_bounds_counter;
+	double diff;
 	Color color;
 
-	Plane() {
-		created_at = time(nullptr);
-		id = next_id++;
-
-		destroyed_at = -1;
-		radius = DEFAULT_PLANE_RADIUS;
-		direction = 0;
-		center_x = 0;
-		center_y = 0;
-		color = DEFAULT_PLANE_COLOR;
-		speed = DEFAULT_PLANE_SPEED;
-		out_of_bounds_counter = 0;
-		is_selected = false;
-	}
+	Plane();
 	Plane(long id, long created_at, long destroyed_at) :Plane() {
 		this->id = id;
 		this->created_at = created_at;

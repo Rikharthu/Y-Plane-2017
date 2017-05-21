@@ -9,6 +9,7 @@ Ufo::Ufo() :Plane()
 {
 	radius = UFO_RADIUS;
 	speed = UFO_SPEED;
+	diff = PI / 8;
 }
 
 void Ufo::draw()

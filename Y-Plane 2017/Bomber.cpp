@@ -15,6 +15,7 @@ Bomber::Bomber() :Plane()
 {
 	radius = BOMBER_RADIUS;
 	speed = BOMBER_SPEED;
+	diff = PI / 32;
 	color = BOMBER_COLOR;
 }
 

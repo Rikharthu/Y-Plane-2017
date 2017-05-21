@@ -18,6 +18,7 @@ Jet::Jet() :Plane()
 	radius = JET_RADIUS;
 	speed = JET_SPEED;
 	color = JET_COLOR;
+	diff = PI / 12;
 }
 
 void Jet::draw()
