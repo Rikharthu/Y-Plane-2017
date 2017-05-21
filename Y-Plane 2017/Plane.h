@@ -18,6 +18,7 @@ public:
 	int center_x, center_y;
 	float direction;
 	float speed;
+	bool is_selected;
 	int out_of_bounds_counter;
 	Color color;
 
@@ -33,6 +34,7 @@ public:
 		color = DEFAULT_PLANE_COLOR;
 		speed = DEFAULT_PLANE_SPEED;
 		out_of_bounds_counter = 0;
+		is_selected = false;
 	}
 	Plane(long id, long created_at, long destroyed_at) :Plane() {
 		this->id = id;

@@ -26,6 +26,7 @@ public:
 	void shoot(int x, int y);
 	void draw_all();
 	void move_all();
+	void set_selected(int index);
 }; 
 
 extern Simulation * simulation;

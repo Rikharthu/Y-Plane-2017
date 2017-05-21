@@ -15,6 +15,8 @@
 #include <locale>
 #include <codecvt>
 #include <string>
+#include <regex>
+#include <iostream>
 
 using namespace Y_Plane_2017;
 
@@ -107,13 +109,9 @@ void MainPage::LogMessage(Object ^ parameter)
 
 void Y_Plane_2017::MainPage::CanvasAnimated_Draw(Microsoft::Graphics::Canvas::UI::Xaml::ICanvasAnimatedControl^ sender, Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedDrawEventArgs^ args)
 {
-	// TODO move to simulation.render()
 	simulation->render_target->CreateDrawingSession()->Clear(Colors::LightBlue);
 	simulation->move_all();
 	simulation->draw_all();
-
-	junkers->move();
-	junkers->draw();
 
 	args->DrawingSession->DrawImage(simulation->render_target);
 }
@@ -131,10 +129,6 @@ void Y_Plane_2017::MainPage::CanvasAnimated_PointerPressed(Platform::Object^ sen
 
 void Y_Plane_2017::MainPage::CanvasAnimated_CreateResources(Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^ sender, Microsoft::Graphics::Canvas::UI::CanvasCreateResourcesEventArgs^ args)
 {
-	junkers = new Bomber();
-	junkers->moveTo(200, 200);
-	junkers->direction = 91;
-	junkers->speed = 3;
 	simulation = new Simulation(CanvasAnimated);
 	simulation->render_target= ref new CanvasRenderTarget(CanvasAnimated, CanvasAnimated->Size);
 	simulation->generatePlanes();
@@ -144,6 +138,7 @@ void Y_Plane_2017::MainPage::CanvasAnimated_CreateResources(Microsoft::Graphics:
 void Y_Plane_2017::MainPage::BtnShowDatabase_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	vector<Plane*> planes = *simulation->database->getData2();
+	//PlanesListView->Items->ReplaceAll
 	PlanesListView->Items->Clear();
 	for (Plane *p : planes) {
 		char buffer[256];
@@ -157,20 +152,17 @@ void Y_Plane_2017::MainPage::BtnShowDatabase_Click(Platform::Object^ sender, Win
 		strftime(date1, sizeof(date1), "%d/%m/%Y %H:%M:%S", &created_at_struct);
 		// 2. Destroyed at
 		char date2[20];
-		if (p->destroyed_at != -1) {
+		if (p->destroyed_at >0) {
 			time_t destroyed_at = time_t(p->destroyed_at);
 			struct tm destroyed_at_struct;
 			localtime_s(&destroyed_at_struct, &destroyed_at);
 			strftime(date2, sizeof(date2), "%d/%m/%Y %H:%M:%S", &destroyed_at_struct);
+			sprintf(buffer, "ID: %d\nCreated at\t%s\nDestroyed at\t%s", p->id, date1, date2);
 		}
 		else {
-			strcpy(date2, "-");
+			sprintf(buffer, "ID: %d\nCreated at\t%s", p->id, date1);
 		}
 
-		// ID
-		sprintf(buffer, "ID: %d\nCreated at\t%s\nDestroyed at\t%s", p->id, date1, date2);
-
-		// Assemble
 		PlanesListView->Items->Append(toPlatformString(buffer));
 	}
 	ListDrawer->IsPaneOpen = true;
@@ -190,4 +182,29 @@ void Y_Plane_2017::MainPage::HamburgerButton_Click(Platform::Object^ sender, Win
 {
 
 	ListDrawer->IsPaneOpen = !ListDrawer->IsPaneOpen;
+}
+
+
+void Y_Plane_2017::MainPage::PlanesListView_ItemClick(Platform::Object^ sender, Windows::UI::Xaml::Controls::ItemClickEventArgs^ e)
+{
+	auto a=e->ClickedItem;
+	int xyz = 4;
+}
+
+
+void Y_Plane_2017::MainPage::PlanesListView_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e)
+{
+	//int index = PlanesListView->SelectedIndex;
+	//auto smth = static_cast<String^>(PlanesListView->SelectedItem);
+	//// extract ID:_ <=
+	//regex rgx("ID=");
+	//smatch match;
+	//if(regex_search(smth))
+	//simulation->set_selected(index);
+}
+
+
+void Y_Plane_2017::MainPage::GenerateButton_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	simulation->generatePlanes();
 }

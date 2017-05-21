@@ -47,6 +47,7 @@ namespace Y_Plane_2017
     
         private: ::Windows::UI::Xaml::Controls::SplitView^ ListDrawer;
         private: ::Windows::UI::Xaml::Controls::Button^ HamburgerButton;
+        private: ::Windows::UI::Xaml::Controls::Button^ GenerateButton;
         private: ::Windows::UI::Xaml::Controls::ListView^ PlanesListView;
         private: ::Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^ CanvasAnimated;
     };

@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "Bomber.h"
 #include "Jet.h"
+#include "Ufo.h"
 #include <ctime>
 #include <mutex>
 
@@ -15,11 +16,9 @@ void Simulation::generatePlanes()
 	lock_guard<mutex> lock(luftwaffe_lock);
 	srand(time(NULL));
 
-	/*int bomber_count = random(1, 5);
+	int bomber_count = random(1, 5);
 	int jet_count = random(1, 12);
-	int airliner_count = (1, 8);*/
-	int bomber_count = 10;
-	int jet_count = 10;
+	int ufo_count = random(1, 8);
 
 	for (int i = 0; i < bomber_count; i++) {
 		luftwaffe.push_back(new Bomber());
@@ -27,10 +26,14 @@ void Simulation::generatePlanes()
 	for (int i = 0; i < jet_count; i++) {
 		luftwaffe.push_back(new Jet());
 	}
+	for (int i = 0; i < ufo_count; i++) {
+		luftwaffe.push_back(new Ufo());
+	}
 
 	for (Plane *p : luftwaffe) {
 		p->moveTo(random(1, 500), random(1, 500));
 		p->direction = random(0, 360);
+		// no need to worry about duplicates, plane ID is primary key
 		database->add(*p);
 	}
 }
@@ -79,6 +82,16 @@ void Simulation::move_all()
 	lock_guard<mutex> lock(luftwaffe_lock);
 	for (Plane *p : luftwaffe) {
 		p->move();
+	}
+}
+
+void Simulation::set_selected(int index)
+{
+	if (index != -1) {
+		for (Plane *p : luftwaffe) {
+			p->is_selected = false;
+		}
+		luftwaffe.at(index)->is_selected = true;
 	}
 }
 

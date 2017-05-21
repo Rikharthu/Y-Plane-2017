@@ -18,10 +18,11 @@ Plane::~Plane()
 	int xyz = 0;
 }
 
-void Plane::draw()
-{
-	CanvasDrawingSession ^session = simulation->render_target->CreateDrawingSession();
-	session->FillCircle(center_x, center_y, radius, color);
+void Plane::draw() {
+	if (is_selected) {
+		CanvasDrawingSession ^session = simulation->render_target->CreateDrawingSession();
+		session->DrawCircle(center_x, center_y, 1.2*radius, Colors::Red);
+	}
 }
 
 void Plane::move()

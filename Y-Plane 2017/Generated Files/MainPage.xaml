@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <SplitView
+        <SplitView x:ConnectionId='1'
             Name="ListDrawer"
             CompactPaneLength="56"
             OpenPaneLength="350"
@@ -28,7 +28,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Button
+                    <Button x:ConnectionId='2'
                         Name="HamburgerButton" 
                         Width="56" Height="56" 
                         FontFamily="Segoe MDL2 Assets" 
@@ -36,10 +36,10 @@
                         FontSize="36" 
                         Background="#00000000" 
                         Foreground="White"/>
-                    <Button
+                    <Button x:ConnectionId='3'
                         Grid.Row="1"
                         Name="GenerateButton" 
-                        Height="56" Click="GenerateButton_Click" >
+                        Height="56"                              >
                         <StackPanel 
                             Orientation="Horizontal">
                             <TextBlock
@@ -50,9 +50,9 @@
                                 Text="Generate" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    <Button
+                    <Button x:ConnectionId='4'
                         Height="56"
-                        Click="BtnShowDatabase_Click"
+                                                     
                         Grid.Row="2" Background="#00000000">
                         <StackPanel 
                             Orientation="Horizontal">
@@ -64,9 +64,9 @@
                                 Text="Refresh" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Button>
-                    <ListView  
+                    <ListView x:ConnectionId='5'  
                             Grid.Row="3"
-                             Name="PlanesListView" Margin="56,0,0,0" ItemClick="PlanesListView_ItemClick" SelectionChanged="PlanesListView_SelectionChanged" >
+                             Name="PlanesListView" Margin="56,0,0,0"                                                                                         >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="White" BorderThickness="0,0,0,1" HorizontalAlignment="Stretch">
@@ -82,13 +82,14 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <canvas:CanvasAnimatedControl 
+                <canvas:CanvasAnimatedControl x:ConnectionId='6' 
                     Grid.Row="1"
                     Name="CanvasAnimated" 
-                    Draw="CanvasAnimated_Draw" 
-                    PointerPressed="CanvasAnimated_PointerPressed"
-                    CreateResources="CanvasAnimated_CreateResources"/>
+                                               
+                                                                  
+                                                                    />
             </Grid>
         </SplitView>
     </Grid>
 </Page>
+

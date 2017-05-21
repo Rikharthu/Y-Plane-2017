@@ -35,23 +35,32 @@ void ::Y_Plane_2017::MainPage::Connect(int __connectionId, ::Platform::Object^ _
         case 2:
             {
                 this->HamburgerButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->HamburgerButton))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::HamburgerButton_Click);
             }
             break;
         case 3:
             {
-                ::Windows::UI::Xaml::Controls::Button^ element3 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
-                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(element3))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
-                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::BtnShowDatabase_Click);
+                this->GenerateButton = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(this->GenerateButton))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::GenerateButton_Click);
             }
             break;
         case 4:
             {
-                this->PlanesListView = safe_cast<::Windows::UI::Xaml::Controls::ListView^>(__target);
+                ::Windows::UI::Xaml::Controls::Button^ element4 = safe_cast<::Windows::UI::Xaml::Controls::Button^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::Button^>(element4))->Click += ref new ::Windows::UI::Xaml::RoutedEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::RoutedEventArgs^))&MainPage::BtnShowDatabase_Click);
             }
             break;
         case 5:
+            {
+                this->PlanesListView = safe_cast<::Windows::UI::Xaml::Controls::ListView^>(__target);
+                (safe_cast<::Windows::UI::Xaml::Controls::ListView^>(this->PlanesListView))->ItemClick += ref new ::Windows::UI::Xaml::Controls::ItemClickEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::ItemClickEventArgs^))&MainPage::PlanesListView_ItemClick);
+                (safe_cast<::Windows::UI::Xaml::Controls::ListView^>(this->PlanesListView))->SelectionChanged += ref new ::Windows::UI::Xaml::Controls::SelectionChangedEventHandler(this, (void (::Y_Plane_2017::MainPage::*)
+                    (::Platform::Object^, ::Windows::UI::Xaml::Controls::SelectionChangedEventArgs^))&MainPage::PlanesListView_SelectionChanged);
+            }
+            break;
+        case 6:
             {
                 this->CanvasAnimated = safe_cast<::Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^>(__target);
                 (safe_cast<::Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedControl^>(this->CanvasAnimated))->Draw += ref new ::Windows::Foundation::TypedEventHandler<::Microsoft::Graphics::Canvas::UI::Xaml::ICanvasAnimatedControl^, ::Microsoft::Graphics::Canvas::UI::Xaml::CanvasAnimatedDrawEventArgs^>(this, (void (::Y_Plane_2017::MainPage::*)

@@ -40,6 +40,9 @@
     <ClCompile Include="LuftwaffeDatabase.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
+    <ClCompile Include="Ufo.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -61,6 +64,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="LuftwaffeDatabase.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Ufo.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
