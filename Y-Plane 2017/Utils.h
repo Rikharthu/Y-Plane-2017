@@ -5,6 +5,6 @@
 
 int random(int low, int high);
 
-char* to_sql_insert_plane(Plane *);
-
 Platform::String ^ toPlatformString(std::string inputString);
+
+double disperse(double direction, double delta);

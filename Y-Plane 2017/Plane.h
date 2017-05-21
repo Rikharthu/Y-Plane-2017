@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Utils.h"
+
 #define DEFAULT_PLANE_RADIUS 4
 #define DEFAULT_PLANE_SPEED 1.0f
 #define DEFAULT_PLANE_COLOR Colors::Red;
@@ -46,10 +48,7 @@ public:
 
 	virtual void draw();
 	virtual void move();
-	void moveTo(int x, int y) {
-		center_x = x;
-		center_y = y;
-	}
+	void moveTo(int x, int y);
 	bool isInside(int x, int y) {
 		return x >= center_x - radius && x <= radius + center_x
 			&& y >= center_y - radius && y <= center_y + radius;

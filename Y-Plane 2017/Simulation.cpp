@@ -31,7 +31,7 @@ void Simulation::generatePlanes()
 	}
 
 	for (Plane *p : luftwaffe) {
-		p->moveTo(random(1, 500), random(1, 500));
+		p->moveTo(random(5, field.Width-5), random(1, field.Height-5));
 		p->direction = random(0, 360);
 		// no need to worry about duplicates, plane ID is primary key
 		database->add(*p);

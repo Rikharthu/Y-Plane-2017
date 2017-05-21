@@ -27,6 +27,7 @@ void Plane::draw() {
 
 void Plane::move()
 {
+	direction = disperse(direction, PI/12);
 	Rect & f = simulation->field;
 	bool is_in = f.Contains(Point(center_x, center_y));
 	int tmp_x = center_x + speed*cos(direction);
@@ -71,4 +72,10 @@ void Plane::move()
 		}
 	}
 
+}
+
+void Plane::moveTo(int x, int y)
+{
+	center_x = x;
+	center_y = y;
 }

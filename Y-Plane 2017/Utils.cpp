@@ -10,16 +10,6 @@ int random(int low, int high)
 	return rand() % (high - low + 1) + low;
 }
 
-char * to_sql_insert_plane(Plane * plane)
-{
-	char* stmt=new char[256];
-	sprintf(stmt,
-		"INSERT INTO LUFTWAFFE(ID, CREATED_AT,DESTROYED_AT)"\
-		"VALUES(%d, %d, %d);", 
-		plane->id, plane->created_at, plane->destroyed_at);
-	return stmt;
-}
-
 Platform::String ^ toPlatformString(std::string inputString)
 {
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
@@ -27,4 +17,11 @@ Platform::String ^ toPlatformString(std::string inputString)
 	Platform::String^ retVal = ref new Platform::String(intermediateForm.c_str());
 
 	return retVal;
+}
+
+double disperse(double direction, double delta)
+{
+	int k = rand() % 2 ? -1 : 1;
+	double p = (double)(rand() % 1001) / 1000;
+	return direction + k*p*delta;
 }
